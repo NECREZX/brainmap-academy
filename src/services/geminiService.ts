@@ -5,7 +5,7 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
 
 export const generateLearningPath = async (topic: string, level: LearningLevel) => {
   const response = await ai.models.generateContent({
-    model: "gemini-3.1-flash-lite",
+    model: "gemini-2.0-flash-lite",
     contents: `
       Kamu adalah BrainMap Academy. Buatlah learning path terstruktur untuk topik: "${topic}" untuk level: "${level}".
       
@@ -45,7 +45,7 @@ export const getExplanation = async (
   mode: 'Santai' | 'Teknis'
 ) => {
   const response = await ai.models.generateContent({
-    model: "gemini-3.1-flash-lite",
+    model: "gemini-2.0-flash-lite",
     contents: `
       Jelaskan milestone "${milestone}" dari topik "${topic}" untuk level: "${level}" dengan mode: "${mode}".
       
@@ -99,7 +99,7 @@ export const getExplanation = async (
 
 export const generateQuiz = async (topic: string, milestone: string, level: LearningLevel) => {
   const response = await ai.models.generateContent({
-    model: "gemini-3.1-flash-lite",
+    model: "gemini-2.0-flash-lite",
     contents: `
       Buatlah 3 pertanyaan kuis pilihan ganda berdasarkan milestone "${milestone}" untuk topik "${topic}" pada level "${level}".
       
@@ -147,7 +147,7 @@ export const generateSummary = async (
 ) => {
   const completedMilestones = milestones.filter(m => m.status === 'completed');
   const response = await ai.models.generateContent({
-    model: "gemini-3.1-flash-lite",
+    model: "gemini-2.0-flash-lite",
     contents: `
       Buatlah ringkasan sesi belajar untuk topik "${topic}" pada level "${level}".
       User telah menyelesaikan ${completedMilestones.length} dari ${milestones.length} milestone.
@@ -194,7 +194,7 @@ export const askQuestion = async (
   level: LearningLevel
 ) => {
   const response = await ai.models.generateContent({
-    model: "gemini-3.1-flash-lite",
+    model: "gemini-2.0-flash-lite",
     contents: `
       Jawab pertanyaan berikut: "${question}".
       Konteks topik utama kita adalah: "${topic || 'Umum'}".
